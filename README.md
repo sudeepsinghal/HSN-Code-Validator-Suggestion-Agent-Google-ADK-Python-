@@ -38,7 +38,12 @@ pip install pandas scikit-learn openpyxl
 ```
 
 ---
+## Demo Project Direct Link
+```text
+If you want to directly run the project directly you can go ahead and click the link below.
+http://192.168.3.46:8501
 
+```
 ## 🚀 How to Run
 
 1. Ensure the following files are in the same directory:
