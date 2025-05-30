@@ -43,6 +43,12 @@ pip install pandas scikit-learn openpyxl
 If you want to directly run the project you can go ahead and click the link below.
 http://192.168.3.46:8501
 
+OR 
+
+You can directly run the below command after navigating in the project folder.
+streamlit run streamlit_app.py
+
+
 ```
 ## 🚀 How to Run
 
