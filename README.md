@@ -9,7 +9,7 @@ This project implements an intelligent agent using the **Google Agent Developer 
 - Suggest relevant HSN codes based on product or service descriptions
 - Provide hierarchical parent HSN codes when available
 - Full error handling for invalid inputs or malformed datasets
-- Integrated with Google's ADK framework and Gemini model for conversational interaction
+- Integrated with Google's ADK framework and Gemini model for conversational interaction.
 
 ---
 
