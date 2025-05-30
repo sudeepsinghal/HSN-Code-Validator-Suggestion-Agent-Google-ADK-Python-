@@ -44,10 +44,9 @@ class HSNErrorHandler:
     def handle_suggestion_response(results, threshold=0.3):
         if results is None or len(results) == 0:
             return "No suggestions found."
-        if isinstance(results, str): # In case an error message was returned
+        if isinstance(results, str):
             return results
-        # Filter results based on threshold if needed, or just return as is
-        # For now, it returns the DataFrame directly if it's not a string error
+
         return results
 
     @staticmethod

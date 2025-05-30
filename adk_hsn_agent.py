@@ -1,5 +1,5 @@
 from google.adk.agents import LlmAgent
-from google.adk.tools import FunctionTool # CORRECTED: Changed from google.adk.tools to google.adk.tool
+from google.adk.tools import FunctionTool
 from google.adk.runners import Runner
 from google.adk.sessions import InMemorySessionService
 from google.genai import types
@@ -8,7 +8,7 @@ from google.genai import types
 from hsn_data_loader import HSNDataLoader
 from hsn_code_validator import HSNCodeValidator
 from hsn_code_suggestor import HSNCodeSuggestor
-from hsn_error_handler import HSNErrorHandler # Imported for completeness, though not directly used in this file's main logic flow
+from hsn_error_handler import HSNErrorHandler
 
 import os
 import asyncio
@@ -30,16 +30,7 @@ class HSNCodeAgent:
         self.suggestor = HSNCodeSuggestor(self.df)
 
     def validate_hsn_code(self, code: str) -> str:
-        """Validates an HSN code and returns its description or an error message.
-        Also includes its hierarchical parent codes if available.
 
-        Args:
-            code: The HSN code to validate.
-
-        Returns:
-            A string containing the HSN code's description if valid,
-            or an error message if invalid or not found.
-        """
         is_valid, result = self.validator.validate_code(code)
         if is_valid:
             parents = self.validator.validate_hierarchy(code)
@@ -49,15 +40,7 @@ class HSNCodeAgent:
             return f"Invalid HSN Code: {result}"
 
     def suggest_hsn_codes(self, description: str) -> str:
-        """Suggests HSN codes based on a product or service description.
 
-        Args:
-            description: The description of the product or service.
-
-        Returns:
-            A formatted string of suggested HSN codes and their descriptions,
-            or a message if no strong matches are found.
-        """
         suggestions = self.suggestor.suggest(description)
         if isinstance(suggestions, str):
             return f"Suggestion: {suggestions}"
@@ -90,7 +73,6 @@ async def run_hsn_agent():
     SESSION_ID = "session_456"
 
     session_service = InMemorySessionService()
-    # CORRECTED: Await the create_session coroutine
     session = await session_service.create_session(
         app_name=APP_NAME,
         user_id=USER_ID,
@@ -112,7 +94,6 @@ async def run_hsn_agent():
             break
 
         content = types.Content(role="user", parts=[types.Part(text=user_input)])
-        # CORRECTED: Iterate over the async_generator returned by runner.run_async
         async for event in runner.run_async(user_id=USER_ID, session_id=SESSION_ID, new_message=content):
             if event.is_final_response():
                 print(f"Agent Response: {event.content.parts[0].text}")
